@@ -1,4 +1,4 @@
-package com.dynamichighlights;
+package com.matchinglootbeams;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
