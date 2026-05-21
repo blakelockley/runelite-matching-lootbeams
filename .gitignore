@@ -1,7 +1,39 @@
+# Gradle
 .gradle/
 build/
 out/
+
+# IntelliJ IDEA
 .idea/
 *.iml
+*.ipr
+*.iws
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# VS Code
 .vscode/
+
+# OS metadata
 .DS_Store
+._*
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# JVM crash logs
+hs_err_pid*.log
+replay_pid*.log
+
+# Logs
+*.log
+
+# Local secrets / env
+.env
+.env.*
+local.properties
+.jagex-dev-creds*
