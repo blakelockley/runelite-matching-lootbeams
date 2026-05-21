@@ -1,31 +1,28 @@
 # Matching Lootbeams
 
-A RuneLite plugin that colors ground-item loot beams using each item sprite's dominant color.
+![Matching Lootbeams in action](https://raw.githubusercontent.com/blakelockley/runelite-matching-lootbeams/main/screenshots/zenyte-serp-helm.png)
 
-The built-in Ground Items plugin colors loot beams by value tier — every "high value" drop looks the same. This plugin replaces that with a per-item beam color derived from the item's sprite, so a stack of coins shines gold, a dragon scimitar pulses red, etc.
+Loot beams colored by each item's dominant sprite color — so coins shine gold, a dragon scimitar pulses red, and you can tell drops apart at a glance.
 
-## How it works
+## Setup
 
-1. On every `ItemSpawned` event, the plugin extracts the item's sprite via `ItemManager.getImage()`.
-2. Pixels are quantized into a 4-bit-per-channel histogram, weighted by saturation so neutral grays don't dominate.
-3. The centroid of the heaviest bucket becomes the beam color.
-4. A `RuneLiteObject` is spawned at the tile with a recolored copy of the modern loot beam model (id `43330`) — the same model the built-in plugin uses, with the same lighting and `FX_BEAM_IDLE` animation.
+This plugin runs alongside RuneLite's built-in **Ground Items** plugin. To avoid duplicate beams:
 
-## Setup with the built-in Ground Items plugin
-
-This plugin runs *alongside* Ground Items. To avoid duplicate beams:
-
-1. Keep **Ground Items** enabled (it still handles text labels, value tiers, and the hide/highlight lists).
-2. In Ground Items' config, set **Loot beam tier** to **None** / off.
+1. Keep **Ground Items** enabled — it still handles text labels, value tiers, and the hide/highlight lists.
+2. In Ground Items' config, set **Loot beam tier** to **None**.
 3. Enable **Matching Lootbeams**.
 
 ## Config
 
 | Option | Default | Purpose |
 |---|---|---|
-| **Show beam** | on | Master toggle for the 3D beam. |
-| **Min value** | 0 | Skip items whose stack value is below this. Per-item value is `max(shop value, GE price)` multiplied by the stack quantity. |
-| **Fallback color** | white | Used when no dominant color can be extracted (monochrome sprites or load failure). |
+| **Show beam** | on | Master toggle for the colored beam. |
+| **Min value** | 0 | Skip items whose stack value is below this. Per-item value is `max(shop value, GE price)`, multiplied by the stack quantity. |
+| **Fallback color** | white | Used when no dominant color can be extracted (e.g. monochrome sprites). |
+
+## How it works
+
+Each spawned item's sprite is sampled into a coarse RGB histogram (16 buckets per channel), weighted by saturation so neutral grays don't dominate. The heaviest bucket's centroid becomes the beam color. A `RuneLiteObject` is then placed at the tile with a recolored copy of RuneLite's modern loot beam model (id `43330`) — same model, same `FX_BEAM_IDLE` animation, just a different color per item.
 
 ## Credits
 
