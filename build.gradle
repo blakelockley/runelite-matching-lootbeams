@@ -8,7 +8,10 @@ repositories {
     mavenCentral()
 }
 
-def runeLiteVersion = 'latest.release'
+// Pinned for build reproducibility. To bump: check https://repo.runelite.net/net/runelite/client/
+// for the latest `<release>` tag. Plugin Hub's CI builds against its own pinned version
+// regardless of what's here, so this only affects local development.
+def runeLiteVersion = '1.12.26.3'
 
 dependencies {
     compileOnly group: 'net.runelite', name: 'client', version: runeLiteVersion
