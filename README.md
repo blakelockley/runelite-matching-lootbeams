@@ -31,3 +31,11 @@ The `Lootbeam.java` class is a verbatim copy of the equivalent class in the [Run
 ## License
 
 BSD 2-Clause. See [LICENSE](LICENSE).
+
+## TODOs
+
+- Clear cache when changing minimum filter
+- Add options for different sampling methods
+- Investigate why a lot of item show a pinkish loot beam
+- Update default minimum value to be 100,000
+- Add filter to only apply to the players dropped items
